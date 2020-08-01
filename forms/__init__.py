@@ -2,6 +2,8 @@ import os
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 
 def create_app(test_config=None):
     # creating and configuring the app
@@ -10,13 +12,14 @@ def create_app(test_config=None):
         SECRET_KEY = 'devel',
         DATABASE=os.path.join(app.instance_path, 'forms.sqlite'),
     )
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:\\\db.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db'
 
 
-    from models import db
+    from .models import db, migrate
 
     
     db.init_app(app)
+    migrate.init_app(app, db)
 
     if test_config is None:
         # load the instance config when not testing and if exists

@@ -1,13 +1,16 @@
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-from .types import ChoiceType
+from .user_types import ChoiceType
 
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 class Applicant(db.Model):
     __tablename__ = 'applicants'
 
+    pk = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(45), nullable=False)
     national_id = db.Column(db.String(10), unique=True, nullable=False)
@@ -27,13 +30,10 @@ class Applicant(db.Model):
 
     work_reputations = db.Column(db.Text, nullable=True)
 
-    
-
 
 class ElectronicApplicant(Applicant):
     __tablename__ = 'ElectronicApplicants'
 
-    pk = db.Column(db.Integer, primary_key=True)
     altium_designer = db.Column(db.Boolean, nullable=True, default=False)
     arduino = db.Column(db.Boolean, nullable=True, default=False)
     code_vision = db.Column(db.Boolean, nullable=True, default=False)
@@ -43,5 +43,6 @@ class ElectronicApplicant(Applicant):
     power = db.Column(db.Boolean, nullable=True, default=False)
     others = db.Column(db.Text, nullable=True)
     resume = db.Column(db.LargeBinary)
+    expected_salary = db.Column(db.String(7), nullable=True)
 
 
