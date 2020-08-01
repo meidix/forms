@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 def create_app(test_config=None):
     # creating and configuring the app
@@ -9,6 +10,13 @@ def create_app(test_config=None):
         SECRET_KEY = 'devel',
         DATABASE=os.path.join(app.instance_path, 'forms.sqlite'),
     )
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:\\\db.db'
+
+
+    from models import db
+
+    
+    db.init_app(app)
 
     if test_config is None:
         # load the instance config when not testing and if exists
@@ -26,3 +34,5 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
         return 'the first fucking page'
+    
+    return app
