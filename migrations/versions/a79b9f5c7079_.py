@@ -1,8 +1,8 @@
-"""Initial migrations
+"""empty message
 
-Revision ID: 69bf07f52ec2
+Revision ID: a79b9f5c7079
 Revises: 
-Create Date: 2020-08-01 14:50:07.779995
+Create Date: 2020-08-02 16:24:16.932707
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '69bf07f52ec2'
+revision = 'a79b9f5c7079'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,8 +28,8 @@ def upgrade():
     sa.Column('mobile_phone', sa.String(length=11), nullable=False),
     sa.Column('Address', sa.Text(), nullable=True),
     sa.Column('university', sa.String(length=80), nullable=True),
-    sa.Column('university_subject', sa.String(length=50), nullable=True),
-    sa.Column('university_degree', forms.user_types.ChoiceType(), nullable=False),
+    sa.Column('university_subject', sa.String(length=50), nullable=False),
+    sa.Column('university_degree', sa.Enum('diploma', 'associate', 'bachelor', 'senior', 'phd', name='universitydegreeenum'), nullable=False),
     sa.Column('work_reputations', sa.Text(), nullable=True),
     sa.Column('altium_designer', sa.Boolean(), nullable=True),
     sa.Column('arduino', sa.Boolean(), nullable=True),

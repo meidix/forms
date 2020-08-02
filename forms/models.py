@@ -1,7 +1,15 @@
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-from .user_types import ChoiceType
+import enum
+
+class UniversityDegreeEnum(enum.Enum):
+    diploma = 'دیپلم'
+    associate = 'کاردانی'
+    bachelor = 'کارشناسی'
+    senior = 'کارشناسی ارشد'
+    phd = 'دکتری'
+
 
 
 db = SQLAlchemy()
@@ -19,14 +27,12 @@ class Applicant(db.Model):
     mobile_phone = db.Column(db.String(11), unique=True, nullable=False)
     Address = db.Column(db.Text)
     university = db.Column(db.String(80), nullable=True)
-    university_subject = db.Column(db.String(50), nullable=True)
+    university_subject = db.Column(db.String(50), nullable=False)
 
-    university_degree = db.Column(ChoiceType({'دیپلم': 'diploma',
-                            'کاردانی': 'over diploma',
-                            'کارشناسی': 'bachelor',
-                            'کارشناسی ارشد': 'seneior',
-                            'دکتری': 'PHD'
-                        }), nullable=False)
+    university_degree = db.Column(db.Enum(UniversityDegreeEnum),
+                            default=UniversityDegreeEnum.diploma,
+                            nullable=False
+                        )
 
     work_reputations = db.Column(db.Text, nullable=True)
 
