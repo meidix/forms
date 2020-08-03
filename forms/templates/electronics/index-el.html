@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title%}Welcome{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-title">
+        <h3>
+        آگهی دعوت به همکاری
+        </h3>
+    </div>
+    <div class="card-body">
+        <p>
+        شرکت دانش بنیان فاپسکو مستقر در پارک علم و فناوری شیخ بهایی از واجدین شرایط جهت طراحی مدار های دیجیتال-الکترونیک-سوئیچینگ و طراحی سیستم های مکانیک دعوت به همکاری مینماید ضمنا دارندگان کارشناسی ارشد و نخبه در تخصص های فوقالذکر به صورت امریه سربازی میتوانند از این فرصت استفاده نماید
+        </p>
+    </div>
+    <div class="card-footer">
+        <p>
+        در صورت تمایل برروی دکمه ثبت درخواست کلیک کنید 
+        </p>
+        <form method="post" action="{{ url_for('electronics.electronic_request_create') }}">
+            <input type="submit" class="btn btn-success mr-5" />
+        </form>
+    </div>
+</div>
+{% endblock %}

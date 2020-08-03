@@ -34,8 +34,9 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/')
-    def index():
-        return 'the first fucking page'
+    from .views import electronics
+    from .views.electronics import index
+    app.register_blueprint(electronics.bp)
+    app.add_url_rule('/', 'index', index)
     
     return app

@@ -1,0 +1,25 @@
+body {
+    direction: rtl;
+}
+td {
+    vertical-align: middle !important;
+}
+th {
+    vertical-align: middle !important;
+}
+
+.modal-header {
+    direction: rtl;
+}
+.close {
+    margin: -1rem -1rem -1rem -1rem !important;
+}
+.modal-dialog {
+    direction: rtl;
+}
+.modal-body {
+    text-align: right !important;
+}
+.dropdown-item {
+    text-align: right !important;
+}
