@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title%}<title>job entry</title>{% endblock %}
+
+{% block content %}
+<div class="card container mt-4 posts bg-dark">
+    <div class="card-header">
+        <h4 class="text-white text-allign-right" align="right">
+        فرم درخواست همکاری
+        </h4>
+    </div>
+    <div class="card-body">
+        <form method="post" action="">
+            <p class='text-white' align="right">
+            اطلاعات هویتی
+            </p>
+            <hr/>
+            <div class="form-inline">
+                {{ form.first_name.label(class=" form-control-label text-white ml-sm-3", align="right") }} 
+                {{ form.first_name(class="form-control mb-2 ml-sm-5 col-4") }}
+                {{ form.last_name.label(class="form-control-label text-white ml-sm-3") }}
+                {{ form.last_name(class="form-control mb-2 ml-sm-5 col-4") }}
+            </div>
+            <div class="form-inline mt-2">
+                {{ form.national_id.label(class="form-control-label text-white ml-sm-3") }}
+                {{ form.national_id(class="form-control mb-2 ml-sm-5 col-4") }}
+                {{ form.date_of_birth.label(class="form-control-label text-white ml-sm-3") }}
+                {{ form.date_of_birth(class="form-control mb-2 ml-sm-5 col-4") }}
+            </div>
+            <hr/>
+            <hr/>
+            <p class='text-white mt-4' align="right">
+            اطلاعات تماس
+            </p>
+            <hr/>
+            <div class="form-inline">
+                {{ form.email.label(class="form-control-label text-white ml-sm-3") }}
+                {{ form.email(class="form-control mb-2 ml-sm-5 col-4") }}
+                {{ form.mobile_phone.label(class="form-control-label text-white ml-sm-3") }}
+                {{ form.mobile_phone(class="form-control mb-2 ml-sm-5 col-4") }}
+            </div>
+            <div class="form-inline mt-2">
+                {{ form.Address.label(class="form-control-label text-white ml-sm-3", align="right") }}
+                {{ form.Address(class="form-control col-10 mb-2 ml-sm-5") }}
+            </div>
+            <hr/>
+            <hr/>
+            <p class='text-white mt-4' align="right">
+            تحصیلات
+            </p>
+            <hr/>
+            <div class="form-inline">
+                {{ form.university.label(class="form-control-label text-white  ml-sm-3") }}
+                {{ form.university(class="form-control mb-2 ml-sm-5 col-2") }}
+                {{ form.university_subject.label(class="form-control-label text-white  ml-sm-3") }}
+                {{ form.university_subject(class="form-control mb-2 ml-sm-5 col-2") }}
+                {{ form.university_degree.label(class="form-control-label text-white  ml-sm-3") }}
+                {{ form.university_degree(class="form-control mb-2 ml-sm-5 col-2") }}
+            </div>
+            <hr/>
+            <hr/>
+            <p class='text-white mt-4' align="right">
+            سوابق کاری
+            </p>
+            <hr/>
+            <div class="form-inline">
+                {{ form.work_reputations.label(class="form-control-label text-white") }}
+                {{ form.work_reputations(class="form-control col-12") }}
+            </div>
+            <hr/>
+            <hr/>
+            <p class='text-white mt-4' align="right">
+             مهارت ها
+            </p>
+            <hr/>
+            <div class="form-check-inline" align="right">
+                {{ form.microcontroller.label(class="form-check-label text-white", align="right") }}
+                {{ form.microcontroller(class="form-check-input") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="form-control btn btn-sucess", value="تائید") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
