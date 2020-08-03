@@ -26,7 +26,7 @@ class Applicant(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     mobile_phone = db.Column(db.String(11), unique=True, nullable=False)
     Address = db.Column(db.Text)
-    university = db.Column(db.String(80), nullable=True)
+    university = db.Column(db.String(80), nullable=False)
     university_subject = db.Column(db.String(50), nullable=False)
 
     university_degree = db.Column(db.Enum(UniversityDegreeEnum),

@@ -9,7 +9,7 @@ def create_app(test_config=None):
     # creating and configuring the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY = 'devel',
+        SECRET_KEY = 'devel-fapsco',
         DATABASE=os.path.join(app.instance_path, 'forms.sqlite'),
     )
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db'
@@ -20,6 +20,13 @@ def create_app(test_config=None):
     
     db.init_app(app)
     migrate.init_app(app, db)
+
+
+    from .views.electronics import bp
+
+
+    app.register_blueprint(bp)
+    app.add_url_rule('/', 'index')
 
     if test_config is None:
         # load the instance config when not testing and if exists
@@ -33,10 +40,5 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
-    from .views import electronics
-    from .views.electronics import index
-    app.register_blueprint(electronics.bp)
-    app.add_url_rule('/', 'index', index)
     
     return app

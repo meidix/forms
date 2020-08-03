@@ -23,3 +23,9 @@ th {
 .dropdown-item {
     text-align: right !important;
 }
+.posts {
+    direction: rtl;
+}
+.text-allign-right {
+    text-align: right;
+}
