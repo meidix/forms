@@ -28,6 +28,42 @@
                 {{ form.date_of_birth(class="form-control mb-2 ml-sm-5 col-4") }}
             </div>
             <hr/>
+            {% if form.first_name.errors %}
+                <ul>
+                {% for error in form.first_name.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if form.last_name.errors %}
+                <ul>
+                {% for error in form.last_name.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if form.national_id.errors %}
+                <ul>
+                {% for error in form.national_id.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if form.date_of_birth.errors %}
+                <ul>
+                {% for error in form.date_of_birth.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
             <hr/>
             <p class='text-white mt-4' align="right">
             اطلاعات تماس
@@ -44,6 +80,33 @@
                 {{ form.Address(class="form-control col-10 mb-2 ml-sm-5") }}
             </div>
             <hr/>
+            {% if form.email.errors %}
+                <ul>
+                {% for error in form.email.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if form.mobile_phone.errors %}
+                <ul>
+                {% for error in form.mobile_phone.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if form.Address.errors %}
+                <ul>
+                {% for error in form.Address.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
             <hr/>
             <p class='text-white mt-4' align="right">
             تحصیلات
@@ -58,6 +121,33 @@
                 {{ form.university_degree(class="form-control mb-2 ml-sm-5 col-2") }}
             </div>
             <hr/>
+            {% if form.university.errors %}
+                <ul>
+                {% for error in form.university.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if form.university_subject.errors %}
+                <ul>
+                {% for error in form.university_subject.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if form.university_degree.errors %}
+                <ul>
+                {% for error in form.university_degree.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
             <hr/>
             <p class='text-white mt-4' align="right">
             سوابق کاری
@@ -68,19 +158,72 @@
                 {{ form.work_reputations(class="form-control col-12") }}
             </div>
             <hr/>
+            {% if form.work_reputations.errors %}
+                <ul>
+                {% for error in form.work_reputations.errors %}
+                    <li class="alert-error">
+                    {{ error }}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
             <hr/>
             <p class='text-white mt-4' align="right">
              مهارت ها
             </p>
             <hr/>
-            <div class="form-check-inline" align="right">
-                {{ form.microcontroller.label(class="form-check-label text-white", align="right") }}
-                {{ form.microcontroller(class="form-check-input") }}
+            <div class="skills mb-4" align="right">
+                {{ form.microcontroller.label(class="skills-container text-white ml-1", align="right") }}
+                {{ form.microcontroller(class="skill-input mb-2 mr-1 ml-lg-5") }}
+                <span class="checkmark"></span>
+                {{ form.power.label(class="skills-container text-white ml-1 mr-lg-5") }}
+                {{ form.power(class="skill-input mb-2 mr-1 ml-lg-5") }}
+                <span class="checkmark"></span>
+                {{ form.atmel_studio.label(class="skills-container text-white ml-1", align="right") }}
+                {{ form.atmel_studio(class="skill-input mb-2 mr-1 ml-lg-5") }}
+                <span class="checkmark"></span>
+            </div>
+            <div class="skills" align="right">
+                {{ form.altium_designer.label(class="skills-container text-white ml-1", align="right") }}
+                {{ form.altium_designer(class="skill-input mb-2 mr-1 ml-lg-5") }}
+                <span class="checkmark"></span>
+                {{ form.arduino.label(class="skills-container text-white ml-1 mr-lg-5") }}
+                {{ form.arduino(class="skill-input mb-2 mr-1 ml-lg-5") }}
+                <span class="checkmark"></span>
+                {{ form.code_vision.label(class="skills-container text-white ml-1 mr-lg-5") }}
+                {{ form.code_vision(class="skill-input mb-2 mr-1 ml-lg-5") }}
+                <span class="checkmark"></span>
+                {{ form.proteus.label(class="skills-container text-white ml-1 mr-lg-5") }}
+                {{ form.proteus(class="skill-input mb-2 mr-1") }}
+                <span class="checkmark"></span>
+            </div>
+            <div class="form-inline mt-lg-4">
+                {{ form.others.label(class="form-control-label text-white ml-3") }}
+                {{ form.others(class="form-control col-12") }}
+            </div>
+            <hr/>
+             <p class='text-white mt-4' align="right">
+             بارگذاری رزومه و حقوق پیشنهادی
+            </p>
+            <hr/>
+            <div class="form-inline">
+                <div class="costum-file mb-3 ml-lg-5">
+                    {{ form.resume(class="costum-file-input") }}
+                </div>
+                {{ form.expected_salary.label(class="form-control-label text-white mb-3 mr-lg-5 ml-2") }}
+                {{form.expected_salary(class="form-control mb-3") }}
             </div>
             <div class="form-group">
-                {{ form.submit(class="form-control btn btn-sucess", value="تائید") }}
+                {{ form.submit(class="form-control btn btn-success", value="تائید") }}
             </div>
         </form>
+        <script>
+            // Add the following code if you want the name of the file appear on select
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        </script>
     </div>
 </div>
 {% endblock %}

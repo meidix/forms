@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (
-    StringField, validators, DateField, TextAreaField, SelectField, SubmitField, RadioField, FileField
+    StringField, validators, DateField, TextAreaField, SelectField, SubmitField, BooleanField, FileField, RadioField
 )
 
 from . import models
@@ -96,56 +96,49 @@ class ApplicantsCreationForm(FlaskForm):
 
 
 class ElectricalApplicantCreationForm(ApplicantsCreationForm):
-    altium_designer = RadioField(
+    altium_designer = BooleanField(
         label='آلتیوم دیزاینر(Altium Designer)',
         validators=[
             validators.Optional()
         ]
     )
 
-    arduino = RadioField(
+    arduino = BooleanField(
         label='آردوینو(Arduino)',
         validators=[
             validators.Optional()
         ]
     )
 
-    code_vision = RadioField(
+    code_vision = BooleanField(
         label='کد ویژن(code vision)',
         validators=[
             validators.Optional()
         ]
     )
 
-    proteus = RadioField(
+    proteus = BooleanField(
         label='پروتئوس(proteus)',
         validators=[
             validators.Optional()
         ]
     )
 
-    atmel_studio = RadioField(
+    atmel_studio = BooleanField(
         label='اتمل استودیو(Atmel Studio)',
         validators=[
             validators.Optional()
         ]
     )
 
-    proteus = RadioField(
-        label='پروتئوس(proteus)',
-        validators=[
-            validators.Optional()
-        ]
-    )
-
-    microcontroller = RadioField(
+    microcontroller = BooleanField(
         label='میکروکنترلر ها',
         validators=[
             validators.Optional()
-        ]
+        ],
     )
 
-    power = RadioField(
+    power = BooleanField(
         label='مدارات تغذیه',
         validators=[
             validators.Optional()
