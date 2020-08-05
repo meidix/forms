@@ -1,7 +1,7 @@
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
+from forms import db
 
 import enum
+
 
 class UniversityDegreeEnum(enum.Enum):
     diploma = 'دیپلم'
@@ -11,10 +11,6 @@ class UniversityDegreeEnum(enum.Enum):
     phd = 'دکتری'
 
 
-
-db = SQLAlchemy()
-migrate = Migrate()
-
 class Applicant(db.Model):
     __tablename__ = 'applicants'
 
@@ -22,7 +18,7 @@ class Applicant(db.Model):
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(45), nullable=False)
     national_id = db.Column(db.String(10), unique=True, nullable=False)
-    date_of_birth = db.Column(db.DateTime)
+    age = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     mobile_phone = db.Column(db.String(11), unique=True, nullable=False)
     Address = db.Column(db.Text)
@@ -31,10 +27,11 @@ class Applicant(db.Model):
 
     university_degree = db.Column(db.Enum(UniversityDegreeEnum),
                             default=UniversityDegreeEnum.diploma,
-                            nullable=False
+                            nullable=True
                         )
 
     work_reputations = db.Column(db.Text, nullable=True)
+
 
 
 class ElectronicApplicant(Applicant):
@@ -48,7 +45,7 @@ class ElectronicApplicant(Applicant):
     microcontroller = db.Column(db.Boolean, nullable=True, default=False)
     power = db.Column(db.Boolean, nullable=True, default=False)
     others = db.Column(db.Text, nullable=True)
-    resume = db.Column(db.LargeBinary)
+    resume = db.Column(db.LargeBinary, nullable=True)
     expected_salary = db.Column(db.String(7), nullable=True)
 
 

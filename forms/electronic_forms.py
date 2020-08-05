@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (
-    StringField, validators, DateField, TextAreaField, SelectField, SubmitField, BooleanField, FileField, RadioField
+    StringField, validators, DateField, TextAreaField, SelectField, SubmitField, BooleanField, FileField, RadioField, IntegerField
 )
 
 from . import models
@@ -8,7 +8,7 @@ from . import models
 DEGREE_CHOICES = [
     (models.UniversityDegreeEnum.diploma, 'دیپلم'),
     (models.UniversityDegreeEnum.associate, 'فوق دیپلم'),
-    (models.UniversityDegreeEnum.bachelor,'کارشناسی'),
+    (models.UniversityDegreeEnum.bachelor, 'کارشناسی'),
     (models.UniversityDegreeEnum.senior, 'کارشناسی ارشد'),
     (models.UniversityDegreeEnum.phd, 'دکتری')]
 
@@ -38,8 +38,11 @@ class ApplicantsCreationForm(FlaskForm):
         ]
     )
 
-    date_of_birth = DateField(
-        label='تاریخ تولد'
+    age = IntegerField(
+        label='سن',
+        validators=[
+            validators.InputRequired('وارد کردن سن الزامیست')
+        ]
     )
 
     email = StringField(
@@ -147,13 +150,6 @@ class ElectricalApplicantCreationForm(ApplicantsCreationForm):
 
     others = TextAreaField(
         label='مهارت های دیگر',
-        validators=[
-            validators.Optional()
-        ]
-    )
-
-    resume = FileField(
-        label='رزومه',
         validators=[
             validators.Optional()
         ]

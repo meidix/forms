@@ -85,3 +85,13 @@ th {
     border-radius: 50%;
     background: white;
 }
+
+.img-responsive {
+    height: auto;
+    width: auto;
+    max-height: 75px;
+    max-width: 75px;
+}
+.form-align-right {
+    direction: rtl;
+}

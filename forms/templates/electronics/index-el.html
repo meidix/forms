@@ -3,6 +3,15 @@
 {% block title %}<title>Welcome</title>{% endblock %}
 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="container allign-text-right" align="right">
+                {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 <div class="card container mt-4 posts bg-dark">
     <div class="card-header">
         <h4 class="text-white text-allign-right" align="right">

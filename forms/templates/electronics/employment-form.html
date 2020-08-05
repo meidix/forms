@@ -3,6 +3,16 @@
 {% block title%}<title>job entry</title>{% endblock %}
 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class=" container alert alert-danger allign-text-right mt-2" align="right">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <div class="card container mt-4 posts bg-dark">
     <div class="card-header">
         <h4 class="text-white text-allign-right" align="right">
@@ -10,7 +20,8 @@
         </h4>
     </div>
     <div class="card-body">
-        <form method="post" action="">
+        <form method="post" action="" class="needs-validation" novalidate>
+            {{ form.csrf_token }}
             <p class='text-white' align="right">
             اطلاعات هویتی
             </p>
@@ -18,47 +29,55 @@
             <div class="form-inline">
                 {{ form.first_name.label(class=" form-control-label text-white ml-sm-3", align="right") }} 
                 {{ form.first_name(class="form-control mb-2 ml-sm-5 col-4") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
                 {{ form.last_name.label(class="form-control-label text-white ml-sm-3") }}
                 {{ form.last_name(class="form-control mb-2 ml-sm-5 col-4") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
             <div class="form-inline mt-2">
                 {{ form.national_id.label(class="form-control-label text-white ml-sm-3") }}
                 {{ form.national_id(class="form-control mb-2 ml-sm-5 col-4") }}
-                {{ form.date_of_birth.label(class="form-control-label text-white ml-sm-3") }}
-                {{ form.date_of_birth(class="form-control mb-2 ml-sm-5 col-4") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
+                {{ form.age.label(class="form-control-label text-white ml-sm-3") }}
+                {{ form.age(class="form-control mb-2 ml-sm-5 col-4") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
             <hr/>
             {% if form.first_name.errors %}
-                <ul>
+                <ul class="form-group mb-3" align="right">
                 {% for error in form.first_name.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
                 </ul>
             {% endif %}
             {% if form.last_name.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.last_name.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
                 </ul>
             {% endif %}
             {% if form.national_id.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.national_id.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
                 </ul>
             {% endif %}
-            {% if form.date_of_birth.errors %}
-                <ul>
-                {% for error in form.date_of_birth.errors %}
-                    <li class="alert-error">
+            {% if form.age.errors %}
+                <ul class="form-group" align="right">
+                {% for error in form.age.errors %}
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
@@ -72,36 +91,42 @@
             <div class="form-inline">
                 {{ form.email.label(class="form-control-label text-white ml-sm-3") }}
                 {{ form.email(class="form-control mb-2 ml-sm-5 col-4") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
                 {{ form.mobile_phone.label(class="form-control-label text-white ml-sm-3") }}
                 {{ form.mobile_phone(class="form-control mb-2 ml-sm-5 col-4") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
             <div class="form-inline mt-2">
                 {{ form.Address.label(class="form-control-label text-white ml-sm-3", align="right") }}
                 {{ form.Address(class="form-control col-10 mb-2 ml-sm-5") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
             <hr/>
             {% if form.email.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.email.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
                 </ul>
             {% endif %}
             {% if form.mobile_phone.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.mobile_phone.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
                 </ul>
             {% endif %}
             {% if form.Address.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.Address.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
@@ -115,34 +140,40 @@
             <div class="form-inline">
                 {{ form.university.label(class="form-control-label text-white  ml-sm-3") }}
                 {{ form.university(class="form-control mb-2 ml-sm-5 col-2") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
                 {{ form.university_subject.label(class="form-control-label text-white  ml-sm-3") }}
                 {{ form.university_subject(class="form-control mb-2 ml-sm-5 col-2") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
                 {{ form.university_degree.label(class="form-control-label text-white  ml-sm-3") }}
                 {{ form.university_degree(class="form-control mb-2 ml-sm-5 col-2") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
             <hr/>
             {% if form.university.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.university.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
                 </ul>
             {% endif %}
             {% if form.university_subject.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.university_subject.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
                 </ul>
             {% endif %}
             {% if form.university_degree.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.university_degree.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
@@ -156,12 +187,14 @@
             <div class="form-inline">
                 {{ form.work_reputations.label(class="form-control-label text-white") }}
                 {{ form.work_reputations(class="form-control col-12") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
             <hr/>
             {% if form.work_reputations.errors %}
-                <ul>
+                <ul class="form-group" align="right">
                 {% for error in form.work_reputations.errors %}
-                    <li class="alert-error">
+                    <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
                 {% endfor %}
@@ -172,30 +205,23 @@
              مهارت ها
             </p>
             <hr/>
-            <div class="skills mb-4" align="right">
-                {{ form.microcontroller.label(class="skills-container text-white ml-1", align="right") }}
-                {{ form.microcontroller(class="skill-input mb-2 mr-1 ml-lg-5") }}
-                <span class="checkmark"></span>
-                {{ form.power.label(class="skills-container text-white ml-1 mr-lg-5") }}
-                {{ form.power(class="skill-input mb-2 mr-1 ml-lg-5") }}
-                <span class="checkmark"></span>
-                {{ form.atmel_studio.label(class="skills-container text-white ml-1", align="right") }}
-                {{ form.atmel_studio(class="skill-input mb-2 mr-1 ml-lg-5") }}
-                <span class="checkmark"></span>
+            <div class="form-check mb-4 form-align-right" align="right">
+                {{ form.microcontroller.label(class="form-check-label text-white ml-1", align="right") }}
+                {{ form.microcontroller(class="form-check-input mb-2 mr-1 ml-lg-5") }}
+                {{ form.power.label(class="form-check-label text-white ml-1 mr-lg-5") }}
+                {{ form.power(class="form-check-input mb-2 mr-1 ml-lg-5") }}
+                {{ form.atmel_studio.label(class="form-check-label text-white ml-1 mr-lg-5", align="right") }}
+                {{ form.atmel_studio(class="form-check-input mb-2 mr-1 ml-lg-5") }}
             </div>
-            <div class="skills" align="right">
-                {{ form.altium_designer.label(class="skills-container text-white ml-1", align="right") }}
-                {{ form.altium_designer(class="skill-input mb-2 mr-1 ml-lg-5") }}
-                <span class="checkmark"></span>
-                {{ form.arduino.label(class="skills-container text-white ml-1 mr-lg-5") }}
-                {{ form.arduino(class="skill-input mb-2 mr-1 ml-lg-5") }}
-                <span class="checkmark"></span>
-                {{ form.code_vision.label(class="skills-container text-white ml-1 mr-lg-5") }}
-                {{ form.code_vision(class="skill-input mb-2 mr-1 ml-lg-5") }}
-                <span class="checkmark"></span>
-                {{ form.proteus.label(class="skills-container text-white ml-1 mr-lg-5") }}
-                {{ form.proteus(class="skill-input mb-2 mr-1") }}
-                <span class="checkmark"></span>
+            <div class="form-check" align="right">
+                {{ form.altium_designer.label(class="form-check-label text-white ml-1", align="right") }}
+                {{ form.altium_designer(class="form-check-input mb-2 mr-1 ml-lg-5") }}
+                {{ form.arduino.label(class="form-check-label text-white ml-1 mr-lg-5") }}
+                {{ form.arduino(class="form-check-input mb-2 mr-1 ml-lg-5") }}
+                {{ form.code_vision.label(class="form-check-label text-white ml-1 mr-lg-5") }}
+                {{ form.code_vision(class="form-check-input mb-2 mr-1 ml-lg-5") }}
+                {{ form.proteus.label(class="form-check-label text-white ml-1 mr-lg-5") }}
+                {{ form.proteus(class="form-check-input mb-2 mr-1") }}
             </div>
             <div class="form-inline mt-lg-4">
                 {{ form.others.label(class="form-control-label text-white ml-3") }}
@@ -203,15 +229,14 @@
             </div>
             <hr/>
              <p class='text-white mt-4' align="right">
-             بارگذاری رزومه و حقوق پیشنهادی
+              حقوق پیشنهادی
             </p>
             <hr/>
             <div class="form-inline">
-                <div class="costum-file mb-3 ml-lg-5">
-                    {{ form.resume(class="costum-file-input") }}
-                </div>
                 {{ form.expected_salary.label(class="form-control-label text-white mb-3 mr-lg-5 ml-2") }}
                 {{form.expected_salary(class="form-control mb-3") }}
+                <div class="valid-feedback">مورد پذیرش</div>
+                <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
             <div class="form-group">
                 {{ form.submit(class="form-control btn btn-success", value="تائید") }}
