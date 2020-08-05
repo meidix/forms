@@ -6,11 +6,11 @@ from wtforms import (
 from . import models
 
 DEGREE_CHOICES = [
-    (models.UniversityDegreeEnum.diploma, 'دیپلم'),
-    (models.UniversityDegreeEnum.associate, 'فوق دیپلم'),
-    (models.UniversityDegreeEnum.bachelor, 'کارشناسی'),
-    (models.UniversityDegreeEnum.senior, 'کارشناسی ارشد'),
-    (models.UniversityDegreeEnum.phd, 'دکتری')]
+    ('diploma', 'دیپلم'),
+    ('associate', 'فوق دیپلم'),
+    ('bechlor', 'کارشناسی'),
+    ('senior', 'کارشناسی ارشد'),
+    ('phd', 'دکتری')]
 
 
 class ApplicantsCreationForm(FlaskForm):
@@ -57,7 +57,7 @@ class ApplicantsCreationForm(FlaskForm):
         label='شماره موبایل',
         validators=[
             validators.Length(min=11, max=11, message='شماره موبایل وارد شده صحیح نمی باشد'),
-            validators.InputRequired('وارد کردن شماره موبایل الزامیست')
+            validators.InputRequired('وارد کردن شماره موبایل الزامیست'),
         ]
     )
 
@@ -82,7 +82,7 @@ class ApplicantsCreationForm(FlaskForm):
         ]
     )
 
-    university_degree = SelectField(
+    degree = SelectField(
         label='مدرک تحصیلی',
         validators=[
             validators.InputRequired('وارد کردن مدرک تحصیلی الزامیست')

@@ -22,7 +22,18 @@ def create_request():
     if form.validate_on_submit():
 
         applicant = ElectronicApplicant()
-        form.populate_obj(applicant)    
+        form.populate_obj(applicant) 
+
+        if form.degree.data == 'diploma':
+            applicant.university_degree = UniversityDegreeEnum.diploma
+        elif form.degree.data == 'associate':
+            applicant.university_degree = UniversityDegreeEnum.associate
+        elif form.degree.data == 'bahcelor':
+            applicant.university_degree = UniversityDegreeEnum.bachelor
+        elif form.degree.data == 'senior':
+            applicant.university_degree = UniversityDegreeEnum.senior
+        elif form.degree.data == 'phd':
+            applicant.university_degree = UniversityDegreeEnum.phd
         
         db.session.add(applicant)
         db.session.commit()

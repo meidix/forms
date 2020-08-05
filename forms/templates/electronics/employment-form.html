@@ -146,8 +146,8 @@
                 {{ form.university_subject(class="form-control mb-2 ml-sm-5 col-2") }}
                 <div class="valid-feedback">مورد پذیرش</div>
                 <div class="invalid-feedback">مورد پذیرش نیست</div>
-                {{ form.university_degree.label(class="form-control-label text-white  ml-sm-3") }}
-                {{ form.university_degree(class="form-control mb-2 ml-sm-5 col-2") }}
+                {{ form.degree.label(class="form-control-label text-white  ml-sm-3") }}
+                {{ form.degree(class="form-control mb-2 ml-sm-5 col-2") }}
                 <div class="valid-feedback">مورد پذیرش</div>
                 <div class="invalid-feedback">مورد پذیرش نیست</div>
             </div>
@@ -170,9 +170,9 @@
                 {% endfor %}
                 </ul>
             {% endif %}
-            {% if form.university_degree.errors %}
+            {% if form.degree.errors %}
                 <ul class="form-group" align="right">
-                {% for error in form.university_degree.errors %}
+                {% for error in form.degree.errors %}
                     <li class="alert alert-danger form-control">
                     {{ error }}
                     </li>
