@@ -1,3 +1,5 @@
+from werkzeug.utils import secure_filename
+
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -39,8 +41,35 @@ def create_request():
         db.session.commit()
 
         flash('درخواست شما با موفقیت ارسال شد', 'success')
-        return redirect(url_for('index'))
+        return redirect(url_for('upload_resume'))
     
     else:
         flash('لطفا ایرادات زیر را قبل از ارسال دوباره فرم برطرف کنید', 'danger')
         return render_template('electronics/employment-form.html', form=form)
+
+    
+@bp.route('/resume/<id>', methods=['GET', 'POST'])
+def upload_resume(id):
+    if request.method == 'POST':
+        if file not in request.files:
+            flash('شما فایلی آپلود نکردید')
+            return redirect(request.url)
+        
+        file = request.files['file']
+        if file.filename == '':
+            flash('فایل انتخاب نشده است')
+            return redirect(request.url)
+        
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            user = ElectronicApplicant.query.filter(national_id=id)
+            if user:
+                user.resume = file
+            
+            flash('هیچ درخواستی با این شماره ملی وجود ندارد')
+            return redirect(reuest.url)
+        
+        flash('فرمت فایل پذیرفته نیست')
+        return redirect(request.url)
+
+    return render_template('electronics/resume-upload.html')
