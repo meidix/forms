@@ -33,6 +33,10 @@ class Applicant(db.Model):
     work_reputations = db.Column(db.Text, nullable=True)
 
 
+    def __repr__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
 
 class ElectronicApplicant(Applicant):
     __tablename__ = 'ElectronicApplicants'

@@ -6,7 +6,7 @@
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for message in messages %}
-            <div class=" container alert alert-danger allign-text-right mt-2" align="right">
+            <div class=" container alert alert-success allign-text-right mt-2" align="right">
             {{ message }}
             </div>
         {% endfor %}
@@ -19,8 +19,8 @@
         فرم درخواست همکاری
         </h4>
     </div>
-    <div class="card-body">
-        <form method="post" action="post" class="form-inline" enctype="multipart/form-data">
+    <div class="card-body" align="right">
+        <form method="post" action="post" class="form-group" enctype="multipart/form-data">
             <input type="file" name="file" class="form-inline-input">
             <input type="submit" name="submit" value="آپلود" class="btn btn-success form-inline-input"> 
         </form>
@@ -32,7 +32,7 @@
             });
         </script>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" align="right">
         <a class="btn btn-warning">
         رد کن
         </a>

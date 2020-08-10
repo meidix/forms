@@ -5,6 +5,9 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 
+
+ALLOWED_EXTENSIONS = ['jpg', 'png', 'jpeg', 'pdf', 'docx']
+
 db = SQLAlchemy()
 migrate = Migrate()
 
@@ -19,7 +22,7 @@ def create_app(test_config=None):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'static/uploads')
-    app.config['ALLOWED_EXTESIONS'] =['jpg', 'png', 'jpeg', 'pdf', 'docx']
+    app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
     app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024;
 
     db.init_app(app)

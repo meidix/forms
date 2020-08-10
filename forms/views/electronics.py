@@ -6,6 +6,8 @@ from flask import (
 
 from forms.models import db, Applicant, ElectronicApplicant, UniversityDegreeEnum
 from forms.electronic_forms import ApplicantsCreationForm, ElectricalApplicantCreationForm
+from forms import ALLOWED_EXTENSIONS
+
 
 from datetime import datetime
 
@@ -41,17 +43,22 @@ def create_request():
         db.session.commit()
 
         flash('درخواست شما با موفقیت ارسال شد', 'success')
-        return redirect(url_for('upload_resume'))
+        return redirect(url_for('electronics.upload_resume', id=applicant.pk))
     
     else:
         flash('لطفا ایرادات زیر را قبل از ارسال دوباره فرم برطرف کنید', 'danger')
         return render_template('electronics/employment-form.html', form=form)
 
-    
+
+def allowed_file(filename):    
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 @bp.route('/resume/<id>', methods=['GET', 'POST'])
 def upload_resume(id):
     if request.method == 'POST':
-        if file not in request.files:
+        if not request.files:
             flash('شما فایلی آپلود نکردید')
             return redirect(request.url)
         
@@ -62,12 +69,13 @@ def upload_resume(id):
         
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            user = ElectronicApplicant.query.filter(national_id=id)
+            user = ElectronicApplicant.query.get(id)
             if user:
                 user.resume = file
+                user.save()
             
             flash('هیچ درخواستی با این شماره ملی وجود ندارد')
-            return redirect(reuest.url)
+            return redirect(request.url)
         
         flash('فرمت فایل پذیرفته نیست')
         return redirect(request.url)
